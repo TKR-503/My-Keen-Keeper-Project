@@ -1,11 +1,12 @@
-import React from 'react';
+
 
 const TimelinePage = () => {
     return (
         <div>
-            <h2>Timeline</h2>
+            <h1>Timeline</h1>
+            <p>This is the timeline page.</p>
         </div>
     );
 };
 
-export default TimelinePage;
+export default TimelinePage ;

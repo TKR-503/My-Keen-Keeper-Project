@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import useSWR from 'swr'
 import Instagram from "../../public/assets/instagram.png";
 import Facebook from "../../public/assets/facebook.png";
 import Twitter from "../../public/assets/twitter.png";
