@@ -2,7 +2,8 @@
 import Link from "next/link";
 import Image from 'next/image'
 import { usePathname } from "next/navigation";
-import { Home, Clock, BarChart2, Heart } from "lucide-react";
+import { Home, Clock, BarChart2 } from "lucide-react";
+
 
 const navLinks = [
     { href: "/", label: "Home", icon: Home },
