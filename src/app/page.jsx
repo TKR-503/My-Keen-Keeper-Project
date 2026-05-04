@@ -1,10 +1,11 @@
 'use client'
 import FriendCard from "@/components/FriendCard";
 import AddFriendModal from "@/components/AddFriendModal";
+import { useState } from "react";
 
 const HomePage = () => {
  
-
+  const [showModal, setShowModal] = useState(false);
 
 return (
     <div className="min-h-screen bg-gray-50">
@@ -26,7 +27,7 @@ return (
         </button>
       </section>
 
-
+ {showModal && <AddFriendModal onClose={() => setShowModal(false)} />}
       
     </div>
   );
