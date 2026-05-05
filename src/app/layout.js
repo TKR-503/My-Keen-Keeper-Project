@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FriendCard from "@/components/FriendCard";
+import { TimelineProvider } from "@/context/TimelineContext";
 
 
 
@@ -29,8 +30,13 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col">
         <Navbar></Navbar>
-       
-        {children}
+          <main className="mx-auto w-full max-w-5xl px-4 py-8">
+
+            {children}
+          </main>
+            
+      
+      
         <Footer> </Footer>
       </body>
     </html>

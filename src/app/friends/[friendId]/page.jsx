@@ -1,10 +1,13 @@
+import React from 'react';
+
+const FriendDetailPage = async ({params}) => {
+
+    const {friendId} =await params;
 
 
-const FriendDetailPage = () => {
     return (
         <div>
-            <h1>Friend Detail</h1>
-            <p>This is the detail page for a specific friend.</p>
+            
         </div>
     );
 };

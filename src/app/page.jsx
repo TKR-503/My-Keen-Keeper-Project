@@ -29,8 +29,33 @@ const HomePage = () => {
                     + Add a Friend
                 </button>
 
-                <h2 className="text-xl font-semibold text-gray-800 mb-4">Your Friends</h2>
+                {/* Stats Cards */}
+                
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto mt-10 mb-6">
+                    <div className="bg-white rounded-lg shadow-sm  p-4 text-center">
+                        <h3 className="text-2xl font-semibold text-gray-800">{friends.length}</h3>
+                        <p className="text-gray-500 text-sm">Total Friends</p>
+                    </div>
+
+                    <div className="bg-white rounded-lg shadow-sm p-4 text-center">
+                        <h3 className="text-2xl font-semibold text-gray-800">3</h3>
+                        <p className="text-gray-500 text-sm">On Track</p>
+                    </div>
+
+                    <div className="bg-white rounded-lg shadow-sm p-4 text-center">
+                        <h3 className="text-2xl font-semibold text-gray-800">6</h3>
+                        <p className="text-gray-500 text-sm">Need Attention</p>
+                    </div>
+
+                    <div className="bg-white rounded-lg shadow-sm p-4 text-center">
+                        <h3 className="text-2xl font-semibold text-gray-800">12</h3>
+                        <p className="text-gray-500 text-sm">Interactions This Month</p>
+                    </div>
+                </div>
+
                 <div className="bg-gray-100 rounded-lg m-12 text-center border border-gray-100">
+
+                    <h2 className="text-xl font-semibold text-gray-800 mb-4 text-start">Your Friends</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
                         {
                             friends.map(friend => <FriendCard key={friend.id} friend={friend}
