@@ -20,7 +20,9 @@ const FriendCard = ({ friend }) => {
     const label = statusLabel[friend.status] ?? "On Track";
 
     return (
-        <Link href={`/friends/${friend.id}`} className="block">
+
+        
+        <Link href={`/friends/${friend.id}`} >
             <div className="container mx-auto flex flex-col items-center text-center gap-2 px-4 py-5  rounded-xl bg-white hover:bg-green-200 transition-colors duration-150 cursor-pointer">
 
                 {/* ── Avatar ── */}
@@ -55,6 +57,7 @@ const FriendCard = ({ friend }) => {
                 </span>
             </div>
         </Link>
+
     );
 };
 

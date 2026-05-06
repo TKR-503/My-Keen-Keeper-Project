@@ -1,7 +1,7 @@
 import Image from 'next/image'
-import Instagram from "../../public/assets/instagram.png";
-import Facebook from "../../public/assets/facebook.png";
-import Twitter from "../../public/assets/twitter.png";
+import Instagram from "@/assets/instagram.png";
+import Facebook from "@/assets/facebook.png";
+import Twitter from "@/assets/twitter.png";
 
 export default function Footer() {
     const socials = [

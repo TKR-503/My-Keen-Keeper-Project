@@ -2,8 +2,7 @@
 import Link from "next/link";
 import Image from 'next/image'
 import { usePathname } from "next/navigation";
-import { Home, Clock, BarChart2 } from "lucide-react";
-
+import { Home, Clock, BarChart2, Heart } from "lucide-react";
 
 const navLinks = [
     { href: "/", label: "Home", icon: Home },
@@ -31,8 +30,8 @@ export default function Navbar() {
                                     key={href}
                                     href={href}
                                     className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${isActive
-                                            ? "bg-[#4ade80]/20 text-[#4ade80] border border-[#4ade80]/30"
-                                            : "text-gray-600 hover:text-[#4ade80] hover:bg-white/5"
+                                        ? "bg-[#4ade80]/20 text-[#4ade80] border border-[#4ade80]/30"
+                                        : "text-gray-600 hover:text-[#4ade80] hover:bg-white/5"
                                         }`}
                                 >
                                     <Icon size={15} />
