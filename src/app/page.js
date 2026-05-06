@@ -1,3 +1,4 @@
+import FriendPage from "./friends/page";
 
 export default function Home() {
   return (

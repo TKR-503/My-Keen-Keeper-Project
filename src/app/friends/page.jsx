@@ -1,6 +1,4 @@
 import FriendCard from '@/components/FriendCard';
-import React from 'react';
-
 
 async function getData() {
   const res = await fetch("http://localhost:3000/data/friends.json");
@@ -10,7 +8,7 @@ async function getData() {
 const FriendsPage = async () => {
 
   
-    const friends = await getData();
+     const friends  = await getData();
 
     return (
         

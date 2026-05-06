@@ -1,109 +1,145 @@
-import React from 'react';
+import Image from "next/image";
+import NotFound from "../../not-found";
+
+const statusConfig = {
+    "overdue": { bg: "bg-red-100", text: "text-red-600", label: "Overdue" },
+    "almost due": { bg: "bg-amber-100", text: "text-amber-600", label: "Almost Due" },
+    "on-track": { bg: "bg-green-100", text: "text-green-600", label: "On Track" },
+};
+
+const FriendDetailPage = async ({ params }) => {
+    const { friendId } = await params;
+
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+    const res = await fetch(`${baseUrl}/data/friends.json`, { cache: "no-store" });
+    const friendsData = await res.json();
+
+    const friend = friendsData.find((f) => String(f.id) === String(friendId));
 
 
-const FriendDetailPage =  () => {
+    if (!friend) return <NotFound />;
 
- 
-
-    // Find the friend by ID
-  
+    const sc = statusConfig[friend.status] ?? statusConfig["on-track"];
+    const nextDue = new Date(friend.next_due_date).toLocaleDateString("en-US", {
+        month: "short", day: "numeric", year: "numeric",
+    });
 
     return (
-        <div className="p-6 bg-gray-100 min-h-screen flex items-center justify-center">
-            {/* Card */}
-            <div className="w-full max-w-5xl bg-white rounded-2xl shadow-md p-6 grid grid-cols-3 gap-6 border border-gray-200">
 
-                {/* Left Section */}
-                <div className="flex flex-col items-center text-center border-r pr-4">
-                    {/* <img
-                        src="/mnt/data/f04af439-81b8-4ece-b7af-561f59b3654b.png"
-                        alt="profile"
-                        className="w-20 h-20 rounded-full object-cover mb-3"
-                    /> */}
-                    <h2 className=" font-semibold">John Doe</h2>
 
-                    <span className="bg-red-100 text-red-600 text-xs px-2 py-1 rounded-full mt-1">
-                        Overdue
-                    </span>
+        <div className="p-4 sm:p-6 bg-gray-100 min-h-screen flex items-start sm:items-center justify-center">
+            <div className="w-full max-w-5xl bg-white rounded-2xl shadow-md p-4 sm:p-6 border border-gray-200">
 
-                    <span className="bg-green-100 text-green-600 text-xs px-2 py-1 rounded-full mt-1">
-                        FAMILY
-                    </span>
 
-                    <p className="text-gray-500 text-sm mt-2 italic">
-                        Former colleague, great 
-                    </p>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-                    <p className="text-gray-400 text-xs mt-1">
-                        Preferred: 
-                    </p>
+                    {/* ════ LEFT COLUMN ════ */}
+                    <div className="flex flex-col items-center text-center lg:border-r lg:pr-6">
 
-                    <div className="w-full mt-4 space-y-2">
-                        <button className="w-full border rounded-md py-2 text-sm hover:bg-gray-50">
-                            Snooze 2 Weeks
-                        </button>
-                        <button className="w-full border rounded-md py-2 text-sm hover:bg-gray-50">
-                            Archive
-                        </button>
-                        <button className="w-full text-red-500 border rounded-md py-2 text-sm hover:bg-red-50">
-                            Delete
-                        </button>
-                    </div>
-                </div>
+                        {/* avatar */}
+                        <Image
+                            src={friend.picture}
+                            alt={friend.name}
+                            width={100}
+                            height={100}
+                            className="w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover ring-4 ring-white shadow mb-4"
+                        />
 
-                {/* Right Section */}
-                <div className="col-span-2 space-y-4">
+                        {/* name */}
+                        <h2 className="font-bold text-gray-800 text-lg sm:text-xl">{friend.name}</h2>
 
-                    {/* Stats */}
-                    <div className="grid grid-cols-3 gap-4">
-                        <div className="bg-gray-50 rounded-lg p-4 text-center">
-                            <h3 className="text-xl font-semibold">62</h3>
-                            <p className="text-sm text-gray-500">Days Since Contact</p>
+                        {/* status */}
+                        <span className={`${sc.bg} ${sc.text} text-xs px-3 py-1 rounded-full mt-2 font-medium`}>
+                            {sc.label}
+                        </span>
+
+                        {/* tags */}
+                        <div className="flex flex-wrap justify-center gap-1.5 mt-2">
+                            {friend.tags.map((tag) => (
+                                <span
+                                    key={tag}
+                                    className="bg-green-100 text-green-600 text-xs px-2 py-1 rounded-full uppercase font-medium"
+                                >
+                                    {tag}
+                                </span>
+                            ))}
                         </div>
 
-                        <div className="bg-gray-50 rounded-lg p-4 text-center">
-                            <h3 className="text-xl font-semibold">30</h3>
-                            <p className="text-sm text-gray-500">Goal (Days)</p>
-                        </div>
+                        {/* bio */}
+                        <p className="text-gray-500 text-sm mt-3 italic max-w-xs">
+                            &ldquo;{friend.bio.split(".")[0]}.&rdquo;
+                        </p>
 
-                        <div className="bg-gray-50 rounded-lg p-4 text-center">
-                            <h3 className="text-lg font-semibold">Feb 27, 2026</h3>
-                            <p className="text-sm text-gray-500">Next Due</p>
-                        </div>
-                    </div>
+                        {/* email */}
+                        <p className="text-gray-400 text-xs mt-2">
+                            Preferred:{" "}
+                            <span className="text-gray-600 break-all">{friend.email}</span>
+                        </p>
 
-                    {/* Relationship Goal */}
-                    <div className="bg-gray-50 rounded-lg p-4 flex justify-between items-center">
-                        <div>
-                            <h4 className="font-medium">Relationship Goal</h4>
-                            <p className="text-sm text-gray-500">
-                                Connect every <span className="font-semibold">30 days</span>
-                            </p>
-                        </div>
-                        <button className="text-sm border px-3 py-1 rounded hover:bg-gray-100">
-                            Edit
-                        </button>
-                    </div>
-
-                    {/* Quick Actions */}
-                    <div className="bg-gray-50 rounded-lg p-4">
-                        <h4 className="font-medium mb-3">Quick Check-In</h4>
-
-                        <div className="grid grid-cols-3 gap-3">
-                            <button className="border rounded-lg p-4 flex flex-col items-center hover:bg-gray-100">
-                                📞 Call
+                        <div className="w-full mt-5 grid grid-cols-3 gap-2 sm:grid-cols-1 sm:space-y-0 sm:gap-2">
+                            <button className="border rounded-md py-2 px-2 text-xs sm:text-sm hover:bg-gray-50 transition-colors text-center">
+                                ⏰ <span className="hidden sm:inline">Snooze </span>2 Wks
                             </button>
-
-                            <button className="border rounded-lg p-4 flex flex-col items-center hover:bg-gray-100">
-                                💬 Text
+                            <button className="border rounded-md py-2 px-2 text-xs sm:text-sm hover:bg-gray-50 transition-colors text-center">
+                                📦 <span className="hidden sm:inline">Archive</span>
+                                <span className="sm:hidden">Save</span>
                             </button>
-
-                            <button className="border rounded-lg p-4 flex flex-col items-center hover:bg-gray-100">
-                                🎥 Video
+                            <button className="text-red-500 border border-red-200 rounded-md py-2 px-2 text-xs sm:text-sm hover:bg-red-50 transition-colors text-center">
+                                🗑️ Delete
                             </button>
                         </div>
                     </div>
 
+
+                    <div className="lg:gap-9 sm:col-span-2 flex flex-col gap-9">
+
+
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div className="bg-gray-50 rounded-lg p-4 text-center border">
+                                <h3 className="text-2xl font-bold text-gray-800">{friend.days_since_contact}</h3>
+                                <p className="text-sm text-gray-500">Days Since Contact</p>
+                            </div>
+                            <div className="bg-gray-50 rounded-lg p-4 text-center border">
+                                <h3 className="text-2xl font-bold text-gray-800">{friend.goal}</h3>
+                                <p className="text-sm text-gray-500">Goal (Days)</p>
+                            </div>
+                            <div className="bg-gray-50 rounded-lg p-4 text-center border">
+                                <h3 className="text-lg font-bold text-gray-800">{nextDue}</h3>
+                                <p className="text-sm text-gray-500">Next Due</p>
+                            </div>
+                        </div>
+
+                        {/* relationship goal */}
+                        <div className="bg-gray-50 rounded-lg p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border">
+                            <div>
+                                <h4 className="font-medium text-gray-800">Relationship Goal</h4>
+                                <p className="text-sm text-gray-500 mt-0.5">
+                                    Connect every{" "}
+                                    <span className="font-semibold text-gray-800">{friend.goal} days</span>
+                                </p>
+                            </div>
+                            <button className="self-start sm:self-auto text-sm border px-4 py-1.5 rounded hover:bg-gray-100 transition-colors whitespace-nowrap">
+                                Edit
+                            </button>
+                        </div>
+
+
+                        <div className="bg-gray-50 rounded-lg p-4 border">
+                            <h4 className="font-medium mb-3 text-gray-800">Quick Check-In</h4>
+                            <div className="grid grid-cols-3 gap-3">
+                                <button className="border rounded-lg py-3 sm:py-4 flex flex-col items-center gap-1 hover:bg-gray-100 text-sm font-medium transition-colors">
+                                    📞 <span className="text-xs sm:text-sm">Call</span>
+                                </button>
+                                <button className="border rounded-lg py-3 sm:py-4 flex flex-col items-center gap-1 hover:bg-gray-100 text-sm font-medium transition-colors">
+                                    💬 <span className="text-xs sm:text-sm">Text</span>
+                                </button>
+                                <button className="border rounded-lg py-3 sm:py-4 flex flex-col items-center gap-1 hover:bg-gray-100 text-sm font-medium transition-colors">
+                                    🎥 <span className="text-xs sm:text-sm">Video</span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>

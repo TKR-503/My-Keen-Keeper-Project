@@ -1,16 +1,15 @@
-'use client'
+
 import FriendCard from "@/components/FriendCard";
 import AddFriendModal from "@/components/AddFriendModal";
-import { useState } from "react";
 import FriendPage from "./friends/page";
+import Link from "next/link";
+import AddFriendButton from "@/components/AddFriendButton";
+
 
 
 const HomePage = () => {
 
-    const [showModal, setShowModal] = useState(false);
-
-
-    return (
+return (
         <div className="min-h-screen bg-gray-50">
             {/* Header */}
             <section className="text-center pt-16 pb-10">
@@ -23,14 +22,7 @@ const HomePage = () => {
                     the relationships that matter most.
                 </p>
 
-                <button
-                    onClick={() => setShowModal(true)}
-                    className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-md text-sm font-medium shadow-sm"
-                >
-                    + Add a Friend
-                </button>
-
-                {/* Stats Cards */}
+               {/* Stats Cards */}
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto mt-10 mb-6">
                     <div className="bg-white rounded-lg shadow-sm  p-4 text-center">
@@ -54,11 +46,12 @@ const HomePage = () => {
                     </div>
                 </div>
 
-                <FriendPage/>
-            
+                <AddFriendButton />
+                <FriendPage />
+
             </section>
 
-            {showModal && <AddFriendModal onClose={() => setShowModal(false)} />}
+            
 
         </div>
     );
