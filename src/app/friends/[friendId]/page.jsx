@@ -1,5 +1,11 @@
 import Image from "next/image";
 import NotFound from "../../not-found";
+import CallIcon from "@/assets/call.png";
+import TextIcon from "@/assets/text.png";
+import VideoIcon from "@/assets/video.png";
+import { AlarmClockCheck, Package, Trash2 } from "lucide-react";
+import Link from "next/link";
+
 
 const statusConfig = {
     "overdue": { bg: "bg-red-100", text: "text-red-600", label: "Overdue" },
@@ -77,15 +83,15 @@ const FriendDetailPage = async ({ params }) => {
                         </p>
 
                         <div className="w-full mt-5 grid grid-cols-3 gap-2 sm:grid-cols-1 sm:space-y-0 sm:gap-2">
-                            <button className="border rounded-md py-2 px-2 text-xs sm:text-sm hover:bg-gray-50 transition-colors text-center">
-                                ⏰ <span className="hidden sm:inline">Snooze </span>2 Wks
+                            <button className="border rounded-md py-2 px-2 text-xs sm:text-sm hover:bg-gray-100 transition-colors text-center">
+                                <AlarmClockCheck className="inline-block mr-1" /> <span className="hidden sm:inline">Snooze </span>
                             </button>
-                            <button className="border rounded-md py-2 px-2 text-xs sm:text-sm hover:bg-gray-50 transition-colors text-center">
-                                📦 <span className="hidden sm:inline">Archive</span>
+                            <button className="border rounded-md py-2 px-2 text-xs sm:text-sm hover:bg-gray-100 transition-colors text-center">
+                                <Package className="inline-block mr-1" /> <span className="hidden sm:inline">Archive</span>
                                 <span className="sm:hidden">Save</span>
                             </button>
                             <button className="text-red-500 border border-red-200 rounded-md py-2 px-2 text-xs sm:text-sm hover:bg-red-50 transition-colors text-center">
-                                🗑️ Delete
+                                <Trash2 className="inline-block mr-1" /><span className="hidden sm:inline">Delete</span>
                             </button>
                         </div>
                     </div>
@@ -124,18 +130,62 @@ const FriendDetailPage = async ({ params }) => {
                         </div>
 
 
-                        <div className="bg-gray-50 rounded-lg p-4 border">
-                            <h4 className="font-medium mb-3 text-gray-800">Quick Check-In</h4>
-                            <div className="grid grid-cols-3 gap-3">
-                                <button className="border rounded-lg py-3 sm:py-4 flex flex-col items-center gap-1 hover:bg-gray-100 text-sm font-medium transition-colors">
-                                    📞 <span className="text-xs sm:text-sm">Call</span>
-                                </button>
-                                <button className="border rounded-lg py-3 sm:py-4 flex flex-col items-center gap-1 hover:bg-gray-100 text-sm font-medium transition-colors">
-                                    💬 <span className="text-xs sm:text-sm">Text</span>
-                                </button>
-                                <button className="border rounded-lg py-3 sm:py-4 flex flex-col items-center gap-1 hover:bg-gray-100 text-sm font-medium transition-colors">
-                                    🎥 <span className="text-xs sm:text-sm">Video</span>
-                                </button>
+                        {/* Quick Check-In */}
+                        <div className="bg-gray-50 rounded-lg p-3 sm:p-4 border">
+                            <h4 className="font-medium mb-3 text-gray-800 text-sm sm:text-base">
+                                Quick Check-In
+                            </h4>
+
+                    <div className="grid grid-cols-3 gap-2 sm:gap-3">
+
+                                {/* Call */}
+                                <Link href="/timeline" className="w-full">
+                                    <button className="w-full border rounded-lg py-2 sm:py-4 flex flex-col items-center gap-1 sm:gap-2 hover:bg-green-200 cursor-pointer transition-colors">
+                                        <Image
+                                            src={CallIcon}
+                                            alt="Call"
+                                            width={20}
+                                            height={20}
+                                            className="w-4 h-4 sm:w-5 sm:h-5"
+                                        />
+                                        <span className="text-[10px] sm:text-sm font-medium text-gray-700">
+                                            Call
+                                        </span>
+                                    </button>
+                                </Link>
+
+                                {/* Text */}
+                                <Link href="/timeline" className="w-full">
+                                    <button className="w-full border rounded-lg py-2 sm:py-4 flex flex-col items-center gap-1 sm:gap-2 hover:bg-green-200 cursor-pointer transition-colors">
+                                        <Image
+                                            src={TextIcon}
+                                            alt="Text"
+                                            width={20}
+                                            height={20}
+                                            className="w-4 h-4 sm:w-5 sm:h-5"
+                                        />
+                                        <span className="text-[10px] sm:text-sm font-medium text-gray-700">
+                                            Text
+                                        </span>
+                                    </button>
+                                </Link>
+
+                                {/* Video */}
+                                <Link href="/timeline" className="w-full">
+                                    <button className="w-full border rounded-lg py-2 sm:py-4 flex flex-col items-center gap-1 sm:gap-2 hover:bg-green-200 cursor-pointer transition-colors">
+                                        <Image
+                                            src={VideoIcon}
+                                            alt="Video"
+                                            width={20}
+                                            height={20}
+                                            className="w-4 h-4 sm:w-5 sm:h-5"
+                                        />
+                                        <span className="text-[10px] sm:text-sm font-medium text-gray-700">
+                                            Video
+                                        </span>
+                                    </button>
+                                </Link>
+
                             </div>
                         </div>
 
