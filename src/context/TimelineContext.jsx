@@ -1,23 +1,21 @@
 "use client";
+
 import { createContext, useContext, useState, useEffect } from "react";
+
+const STORAGE_KEY = "kk_timeline";
 
 const TimelineContext = createContext(null);
 
 export function TimelineProvider({ children }) {
-  const [entries, setEntries] = useState(() => {
-    try {
-      const stored = localStorage.getItem("kk_timeline");
-      return stored ? JSON.parse(stored) : [];
-    } catch {
-      return [];
-    }
-  });
+  
+  const [entries, setEntries] = useState([]);
 
-  const addEntry = (entry) => {
-    const newEntries = [entry, ...entries];
-    setEntries(newEntries);
-    localStorage.setItem("kk_timeline", JSON.stringify(newEntries));
-  };
+
+  function addEntry(newEntry) {
+    setEntries(function (prev) {
+      return [newEntry, ...prev];
+    });
+  }
 
   return (
     <TimelineContext.Provider value={{ entries, addEntry }}>
@@ -28,6 +26,8 @@ export function TimelineProvider({ children }) {
 
 export function useTimeline() {
   const ctx = useContext(TimelineContext);
-  if (!ctx) throw new Error("useTimeline must be used inside TimelineProvider");
+  if (!ctx) {
+    throw new Error("useTimeline must be used inside <TimelineProvider>");
+  }
   return ctx;
 }

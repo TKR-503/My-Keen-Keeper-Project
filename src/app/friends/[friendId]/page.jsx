@@ -1,10 +1,7 @@
 import Image from "next/image";
 import NotFound from "../../not-found";
-import CallIcon from "@/assets/call.png";
-import TextIcon from "@/assets/text.png";
-import VideoIcon from "@/assets/video.png";
 import { AlarmClockCheck, Package, Trash2 } from "lucide-react";
-import Link from "next/link";
+import QuickCheckIn from "@/components/QuickCheckIn";
 
 
 const statusConfig = {
@@ -131,63 +128,13 @@ const FriendDetailPage = async ({ params }) => {
 
 
                         {/* Quick Check-In */}
-                        <div className="bg-gray-50 rounded-lg p-3 sm:p-4 border">
-                            <h4 className="font-medium mb-3 text-gray-800 text-sm sm:text-base">
-                                Quick Check-In
-                            </h4>
+                      
 
-                    <div className="grid grid-cols-3 gap-2 sm:gap-3">
-
-                                {/* Call */}
-                                <Link href="/timeline" className="w-full">
-                                    <button className="w-full border rounded-lg py-2 sm:py-4 flex flex-col items-center gap-1 sm:gap-2 hover:bg-green-200 cursor-pointer transition-colors">
-                                        <Image
-                                            src={CallIcon}
-                                            alt="Call"
-                                            width={20}
-                                            height={20}
-                                            className="w-4 h-4 sm:w-5 sm:h-5"
-                                        />
-                                        <span className="text-[10px] sm:text-sm font-medium text-gray-700">
-                                            Call
-                                        </span>
-                                    </button>
-                                </Link>
-
-                                {/* Text */}
-                                <Link href="/timeline" className="w-full">
-                                    <button className="w-full border rounded-lg py-2 sm:py-4 flex flex-col items-center gap-1 sm:gap-2 hover:bg-green-200 cursor-pointer transition-colors">
-                                        <Image
-                                            src={TextIcon}
-                                            alt="Text"
-                                            width={20}
-                                            height={20}
-                                            className="w-4 h-4 sm:w-5 sm:h-5"
-                                        />
-                                        <span className="text-[10px] sm:text-sm font-medium text-gray-700">
-                                            Text
-                                        </span>
-                                    </button>
-                                </Link>
-
-                                {/* Video */}
-                                <Link href="/timeline" className="w-full">
-                                    <button className="w-full border rounded-lg py-2 sm:py-4 flex flex-col items-center gap-1 sm:gap-2 hover:bg-green-200 cursor-pointer transition-colors">
-                                        <Image
-                                            src={VideoIcon}
-                                            alt="Video"
-                                            width={20}
-                                            height={20}
-                                            className="w-4 h-4 sm:w-5 sm:h-5"
-                                        />
-                                        <span className="text-[10px] sm:text-sm font-medium text-gray-700">
-                                            Video
-                                        </span>
-                                    </button>
-                                </Link>
-
-                            </div>
-                        </div>
+                            <QuickCheckIn
+                                friendId={friend.id}
+                                friendName={friend.name}
+                            />
+                      
 
                     </div>
                 </div>

@@ -10,7 +10,7 @@ export default function AddFriendButton() {
     <>
       <button
         onClick={() => setShowModal(true)}
-        className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-md text-sm font-medium shadow-sm"
+        className="bg-green-600 hover:bg-green-700 cursor-pointer text-white px-5 py-2 rounded-md text-sm font-medium shadow-sm"
       >
         + Add a Friend
       </button>

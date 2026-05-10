@@ -2,7 +2,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { TimelineProvider } from "@/context/TimelineContext";
+import Providers from "@/lib/providers";
+
 
 
 
@@ -25,14 +26,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="bg-gray-50 text-gray-800 min-h-screen flex flex-col antialiased">
-      
-        <TimelineProvider>
+        <Providers>
           <Navbar />
           <main className="w-full max-w-5xl mx-auto px-4 py-8">
             {children}
           </main>
           <Footer />
-        </TimelineProvider>
+        </Providers>
       </body>
     </html>
   );

@@ -21,11 +21,10 @@ const FriendCard = ({ friend }) => {
 
     return (
 
-        
-        <Link href={`/friends/${friend.id}`} >
-            <div className="container mx-auto flex flex-col items-center text-center gap-2 px-4 py-5  rounded-xl bg-white hover:bg-green-200 transition-colors duration-150 cursor-pointer">
 
-                {/* ── Avatar ── */}
+        <Link href={`/friends/${friend.id}`} >
+            <div className="container mx-auto flex flex-col items-center text-center gap-2 px-4 py-5 rounded-xl bg-white hover:bg-green-200 active:scale-95 active:bg-green-300 transition-all duration-150 cursor-pointer select-none">
+
                 <div className=" rounded-full overflow-hidden ring-4 ring-white shadow mb-1 shrink-0">
                     <Image
                         src={friend.picture}
