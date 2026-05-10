@@ -1,7 +1,7 @@
 import FriendCard from '@/components/FriendCard';
 
 async function getData() {
-    const res = await fetch("http://localhost:3000/data/friends.json");
+    const res = await fetch("https://my-keen-keeper-app-puce.vercel.app/data/friends.json");
     return res.json();
 }
 

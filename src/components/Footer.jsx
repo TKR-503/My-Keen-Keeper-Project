@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Instagram from "@/assets/instagram.png";
 import Facebook from "@/assets/facebook.png";
 import Twitter from "@/assets/twitter.png";
+import Logo from "@/assets/logo-xl.png";
 
 export default function Footer() {
     const socials = [
@@ -15,12 +16,12 @@ export default function Footer() {
             <div className="max-w-6xl mx-auto px-6 py-14 flex flex-col items-center text-center">
 
                 {/* Brand */}
-                <Image 
-                    src="/assets/logo-xl.png" 
-                    alt="KeenKeeper Logo" 
-                    width={250} 
-                    height={250} 
-                    className="mb-4" 
+                <Image
+                    src={Logo}
+                    alt="KeenKeeper Logo"
+                    width={250}
+                    height={250}
+                    className="mb-4"
                 />
 
                 {/* Tagline */}
@@ -38,11 +39,11 @@ export default function Footer() {
                             rel="noopener noreferrer"
                             className="w-10 h-10 flex items-center justify-center rounded-full bg-[#2b4a38] hover:bg-[#4ade80] transition-all"
                         >
-                            <Image 
-                                src={icon} 
-                                alt="social icon" 
-                                width={18} 
-                                height={18} 
+                            <Image
+                                src={icon}
+                                alt="social icon"
+                                width={18}
+                                height={18}
                                 className="object-contain"
                             />
                         </a>

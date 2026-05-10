@@ -13,7 +13,7 @@ const statusConfig = {
 const FriendDetailPage = async ({ params }) => {
     const { friendId } = await params;
 
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://my-keen-keeper-app-puce.vercel.app";
     const res = await fetch(`${baseUrl}/data/friends.json`, { cache: "no-store" });
     const friendsData = await res.json();
 
